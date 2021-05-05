@@ -5,12 +5,8 @@ const GlobalStyle = createGlobalStyle`
   *{
     padding: 0;
     margin: 0;
+    font-family: 'Lexend Deca', sans-serif;
   }
-
-  body {
-    font-family: 'Lexend', sans-serif;
-  }
-  
 `
 
 export default GlobalStyle;

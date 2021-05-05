@@ -9,7 +9,6 @@ const SuperLink = styled(Link)`
 
 const ColorButton = styled.button`
   z-index: 1;
-  font-family: 'Lexend Deca', sans-serif;
   margin: 0 auto;
   display: block;
   background: none;
@@ -50,13 +49,18 @@ const ColorButton = styled.button`
 `
 
 const Text = styled.p`
-  font-family: 'Lexend Deca', sans-serif;
   font-size: 80px;
   color: #282c34;
 `
 
 const Wrapper = styled.div`
-    background: transparent;
+  background-image: linear-gradient(#D2D2D2, #747474);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
 `
 
 const Main = () => {
