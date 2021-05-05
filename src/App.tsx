@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+
+import ContentSelector from "./router/ContentSelector";
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+  background-image: linear-gradient(#D2D2D2, #747474);
+  z-index: 0;
+  margin: 0;
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+        <ContentSelector/>
+    </Wrapper>
   );
-}
+};
 
 export default App;
