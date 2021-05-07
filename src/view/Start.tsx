@@ -28,7 +28,12 @@ const Input = styled.input`
   outline: none;
   margin-left: 50px;
   width: 300px;
-  padding: 5px 10px ;
+  padding: 5px 10px;
+  transition: .3s;
+  
+  &:hover{
+    border-color: #b71540;
+  }
 `
 
 const SuperLink = styled(Link)`
@@ -39,6 +44,7 @@ const SuperLink = styled(Link)`
   position: relative;
   left: 3vw;
   top: 1vh;
+  transition: .2s;
 `
 
 const Item = styled.li`
@@ -48,12 +54,13 @@ const Item = styled.li`
   margin-top: 30px;
   width: calc((1vh + 1vw) / 2 * 40);
   height: calc((1vh + 1vw) / 2 * 2.5);
+  transition: .2s;
   
   &:hover{
     ${SuperLink} {
-      color: #079992;
-      background-color: yellow;
+      color: #b71540;
     }
+    background-color: #82ccdd;
   }
 `
 
@@ -68,7 +75,12 @@ const Start = () => {
 
     const addName = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter'){
-            setShowMsg(!showMsg);
+
+            let toEdit = name.toLowerCase();
+            let readyName = toEdit[0].toUpperCase() + toEdit.slice(1,toEdit.length);
+
+            setName(readyName);
+            setShowMsg(true);
         }
     }
 
