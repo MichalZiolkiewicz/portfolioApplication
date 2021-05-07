@@ -7,6 +7,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: 'Lexend Deca', sans-serif;
   }
+  
+  body{
+    overflow-x: hidden;
+  }
 `
 
 export default GlobalStyle;
