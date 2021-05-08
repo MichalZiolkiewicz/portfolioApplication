@@ -1,106 +1,43 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
-import styled from "styled-components";
+import React, {useContext} from "react";
+import { Wrapper, ContentBox, AnimatedText, SuperLink, Text, Header, Input, Item} from "../globalStyle/styled";
 
-const Wrapper = styled.div`
-  background-image: linear-gradient(#DACDE1, #518CCF);
-  height: 100vh;
-  width: 100vw;
-`
-const ContentBox = styled.div`
-  padding: 10vh 10vh;
-`
-
-const Header = styled.p`
-  font-size: calc((1vh + 1vw) / 2 * 5);
-  color: #535353;
-`
-
-const Text = styled.p<{isPrimary: boolean}>`
-  font-size: calc((1vh + 1vw) / 2 * 3);
-  margin-top: ${props => (props.isPrimary ? 0 : "50px")};
-`
-
-const Input = styled.input`
-  font-size: calc((1vh + 1vw) / 2 * 2.8);
-  background-color: transparent;
-  border: 4px solid black;
-  outline: none;
-  margin-left: 50px;
-  width: 300px;
-  padding: 5px 10px;
-  transition: .3s;
-  
-  &:hover{
-    border-color: #b71540;
-  }
-`
-
-const SuperLink = styled(Link)`
-  color: black;
-  text-decoration: none;
-  display: inline;
-  white-space: nowrap;
-  position: relative;
-  left: 3vw;
-  top: 1vh;
-  transition: .2s;
-`
-
-const Item = styled.li`
-  font-size: calc((1vh + 1vw) / 2 * 2.5);
-  list-style: none;
-  background-color: white;
-  margin-top: 30px;
-  width: calc((1vh + 1vw) / 2 * 40);
-  height: calc((1vh + 1vw) / 2 * 2.5);
-  transition: .2s;
-  
-  &:hover{
-    ${SuperLink} {
-      color: #b71540;
-    }
-    background-color: #82ccdd;
-  }
-`
+import {AppContext} from "../context/AppContext";
 
 const Start = () => {
 
-    const [name, setName] = useState("");
-    const [showMsg, setShowMsg] = useState(false);
+    const {name, handleSetName, addName, showMsg} = useContext(AppContext);
 
-    const handleSetName = (e: React.FormEvent<HTMLInputElement>) => {
-        setName(e.currentTarget.value);
+    const transition = {
+        duration: 0.5,
+        ease: [0.43, 0.13, 0.23, 0.96]
+    };
+
+    const siteVariants = {
+        exit: {x:50, opacity: 0, transition},
+        enter: {x: 0, opacity: 1, transition: {delay: 0.2, ...transition }}
     }
 
-    const addName = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter'){
-
-            let toEdit = name.toLowerCase();
-            let readyName = toEdit[0].toUpperCase() + toEdit.slice(1,toEdit.length);
-
-            setName(readyName);
-            setShowMsg(true);
-        }
+    const startVariant = {
+        exit: { backgroundImage: "linear-gradient(#D2D2D2, #747474)", transition},
+        enter: { backgroundImage: "linear-gradient(#DACDE1, #518CCF)" , transition}
     }
-
 
     return(
-        <Wrapper>
-            <ContentBox>
-                <Header>
+        <Wrapper initial="exit" animate="enter" exit="exit" variants={startVariant}>
+            <ContentBox variants={siteVariants}>
+                <Header color="#079992">
                     cześć!
                 </Header>
-                <Text isPrimary={true}>
+                <Text isPrimary={true} color="000">
                     Ja jestem Michał a Ty?
                     <Input value={name} onChange={handleSetName} onKeyDown={addName}/>
                 </Text>
                 {showMsg &&
-                    <Text isPrimary={true}>
+                    <AnimatedText initial="exit" animate="enter" exit="exit" variants={siteVariants}>
                         {name} możesz czuć się tutaj swobodnie, każdy jest tu mile widziany.
-                    </Text>
+                    </AnimatedText>
                 }
-                <Text isPrimary={false}>
+                <Text isPrimary={false} color="000">
                     Co Cię tutaj sprowadza?
                 </Text>
                 <ul>

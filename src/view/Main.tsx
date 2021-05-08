@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import {Link} from "react-router-dom";
+import {motion} from "framer-motion";
+import styled from "styled-components";
 
 const SuperLink = styled(Link)`
   color: #282c34;
@@ -69,14 +70,26 @@ const Main = () => {
         console.log("No to idziemy dalej!")
     }
 
+    const transition = {
+        duration: 1,
+        ease: [0.43, 0.13, 0.23, 0.96]
+    };
+
+    const mainVariant = {
+        exit: { opacity: 0, transition},
+        enter: { opacity: 1, transition: {delay: 0.2, ...transition }}
+    }
+
     return(
         <Wrapper>
-            <Text>
-                Szara i nudna strona?
-            </Text>
-            <ColorButton onClick={handleChangePath}>
-                <SuperLink to="/start">Dodaj koloru!</SuperLink>
-            </ColorButton>
+            <motion.div initial="exit" animate="enter" exit="exit" variants={mainVariant}>
+                <Text>
+                    Szara i nudna strona?
+                </Text>
+                <ColorButton onClick={handleChangePath}>
+                    <SuperLink to="/start">Dodaj koloru!</SuperLink>
+                </ColorButton>
+            </motion.div>
         </Wrapper>
 
     )

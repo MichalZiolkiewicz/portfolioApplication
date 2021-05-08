@@ -1,11 +1,11 @@
 import React from 'react';
 
-import ContentSelector from "./router/ContentSelector";
+import SecondContentSelector from "./router/SecondContentSelector";
 
 function App() {
   return (
-    <ContentSelector/>
+    <SecondContentSelector/>
   );
-};
+}
 
 export default App;

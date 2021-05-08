@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import {BrowserRouter} from "react-router-dom";
 
+import AppProvider from "./context/AppContext";
 import GlobalStyle from "./globalStyle/globalStyle";
 
 import App from './App';
@@ -10,10 +11,12 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-      <BrowserRouter>
-          <GlobalStyle/>
-          <App/>
-      </BrowserRouter>
+      <AppProvider>
+          <BrowserRouter>
+              <GlobalStyle/>
+              <App/>
+          </BrowserRouter>
+      </AppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
